@@ -286,13 +286,15 @@ table.data tr.total td{font-weight:700;border-top:1px solid var(--rule)}
 .stale{color:var(--ink-3)}
 .sum li{margin:.3rem 0;line-height:1.7}
 
-/* 關於本頁：來歷說明，字級小於正文但需清楚可讀 */
-.about{margin:28px 0 0;padding:16px 18px;border:1px solid var(--line);border-radius:6px;
-       background:var(--bg-soft,transparent)}
-.about h2{margin:0 0 10px;font-size:1.02em;letter-spacing:.04em}
+/* 關於本頁：來歷說明，字級小於正文但需清楚可讀。
+   變數須用本檔實際定義者：--rule（線）／--ink-3（次要字）／--band（淡底），
+   不可自創 --line/--muted/--bg-soft，未定義的 var() 會讓 border-color 退回 currentColor。 */
+.about{margin:28px 0 0;padding:16px 18px;border:1px solid var(--rule);border-radius:6px;
+       background:var(--band)}
+.about h2{margin:0 0 10px;font-size:1.02em;letter-spacing:.04em;border:0;padding:0}
 .about dl{margin:0;display:grid;grid-template-columns:5.6em 1fr;gap:6px 14px}
-.about dt{font-weight:600;color:var(--muted)}
-.about dd{margin:0;line-height:1.65}
+.about dt{font-weight:600;color:var(--ink-3)}
+.about dd{margin:0;line-height:1.65;min-width:0;overflow-wrap:anywhere}
 .about a{color:inherit}
 @media(max-width:520px){.about dl{grid-template-columns:1fr;gap:2px 0}
   .about dd{margin:0 0 8px}}
