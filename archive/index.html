@@ -300,6 +300,9 @@ table.data tr.total td{font-weight:700;border-top:1px solid var(--rule)}
 @media(max-width:520px){.about dl{grid-template-columns:1fr;gap:2px 0}
   .about dd{margin:0 0 8px}}
 
+/* 跨欄的單值列（如匯率的開盤／盤中高低／成交金額）靠左 */
+table.data td.lft{text-align:left}
+
 .arc{list-style:none;padding:0;margin:.4rem 0 0;display:grid;
   grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.4rem}
 .arc a{display:block;padding:.45rem .6rem;border:1px solid var(--rule-soft);
