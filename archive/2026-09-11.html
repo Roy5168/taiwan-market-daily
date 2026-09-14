@@ -342,6 +342,8 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   /* 央行決議句、事件名稱為長文字，紙本允許折行 */
   #cbc td,#calendar td{white-space:normal}
   #rates,#fx,#cbc,#bond,#taiex,#history,#econ,#calendar{padding-right:6pt}
+  /* 使用者指定：第六節「近期走勢」起換到第 2 頁（2026-09-14） */
+  #history{break-before:page}
   /* 使用者指定紙本不印這三節的註解（2026-09-14） */
   #inst .note,#fx .note,#econ .note{display:none}
   .pfoot{display:block;margin:6pt 0 0;padding-top:2pt;border-top:.6pt solid #999;font-size:7.5pt;color:#444}
