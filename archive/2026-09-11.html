@@ -334,6 +334,15 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   if (arch && /\/archive\//.test(location.pathname)) {
     arch.setAttribute('href', './');
   }
+  /* 逐一安全綁定：任一按鈕不存在時只略過該顆，不可讓整段腳本中止。
+     （曾因沿用美股版的 btn-pdf，而台股頁面是 btn-print，
+       null.addEventListener 拋錯導致列印與深淺色兩顆按鈕同時失效） */
+  function on(id, fn){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', fn);
+    else if (window.console) console.warn('toolbar: 找不到 #' + id);
+  }
+
   var toastEl = document.getElementById('toast'), toastTimer;
 
   function toast(msg){
@@ -352,7 +361,7 @@ table.data.lftall th,table.data.lftall td{text-align:left}
     return '<!DOCTYPE html>\n' + clone.outerHTML;
   }
 
-  document.getElementById('btn-save').addEventListener('click', function(){
+  on('btn-save', function(){
     var name = '台灣金融市場日報_' + (DATE || 'report') + '.html';
     try {
       var blob = new Blob(['﻿' + buildSnapshot()], {type:'text/html;charset=utf-8'});
@@ -367,18 +376,18 @@ table.data.lftall th,table.data.lftall td{text-align:left}
     }
   });
 
-  document.getElementById('btn-pdf').addEventListener('click', function(){
+  on('btn-print', function(){
     window.print();
   });
 
   /* 深／淺色：僅存在本機瀏覽器，讀取失敗不影響頁面 */
-  var KEY = 'usmkt-theme';
+  var KEY = 'twmkt-theme';   // 與美股站同網域，key 須分開
   try {
     var saved = localStorage.getItem(KEY);
     if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
   } catch (e) {}
 
-  document.getElementById('btn-theme').addEventListener('click', function(){
+  on('btn-theme', function(){
     var cur = document.documentElement.getAttribute('data-theme');
     if (!cur) {
       cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
