@@ -303,7 +303,7 @@ table.data.lftall th,table.data.lftall td{text-align:left}
    不是網頁原樣套印：隱藏工具列／速覽卡片／關於本頁，字級縮到 9.5–10pt，小表兩兩併排。
    本段須置於檔尾，才能蓋過前面同權重的 table.data／.note 規則。版面以 headless Chrome 列印 + pdfinfo 驗證頁數。 */
 @media print{
-  @page{size:A4;margin:10mm 11mm}
+  @page{size:A4;margin:10mm 12mm}
   /* :root 疊三次以提高權重，蓋過深色模式的 :root[data-theme="dark"]，紙本一律白底黑字 */
   :root:root:root{--paper:#fff;--paper-2:#fff;--ink:#000;--ink-2:#222;--ink-3:#555;
     --rule:#999;--rule-soft:#ccc;--band:#f1f1f1;--up:#b0201a;--down:#1d6b45;--mark:#7a5a00}
@@ -333,7 +333,17 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   .note{font-size:8pt;line-height:1.35;margin:1pt 0 0;padding:0 0 0 5pt;border-left:1pt solid #bbb}
   .secs{display:grid;grid-template-columns:1fr 1fr;column-gap:12pt;align-items:start}
   .blk{grid-column:span 2;break-inside:avoid;min-width:0}
-  #inst,#rates,#fx{grid-column:span 1}
+  #inst,#rates{grid-column:span 1}
+  /* 半欄表格：固定版面、表頭與數值可折行，任何字型下都不會寬過欄位；
+     右欄再留 6pt 安全邊，避免印表機實體邊界吃掉最右一欄（RP 變動曾被截，2026-09-14） */
+  #inst table.data,#rates table.data{table-layout:fixed;width:100%}
+  #inst th,#rates th,#inst td,#rates td{white-space:normal;overflow-wrap:anywhere}
+  #rates th:first-child,#rates td:first-child,#inst th:first-child,#inst td:first-child{width:34%}
+  /* 央行決議句、事件名稱為長文字，紙本允許折行 */
+  #cbc td,#calendar td{white-space:normal}
+  #rates,#fx,#cbc,#bond,#taiex,#history,#econ,#calendar{padding-right:6pt}
+  /* 使用者指定紙本不印這三節的註解（2026-09-14） */
+  #inst .note,#fx .note,#econ .note{display:none}
   .pfoot{display:block;margin:6pt 0 0;padding-top:2pt;border-top:.6pt solid #999;font-size:7.5pt;color:#444}
 }
 
