@@ -313,20 +313,21 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   .toolbar,.toast,.glance,.about{display:none !important}
   .masthead{padding:0 0 3pt;border-bottom:1.5pt solid #000;display:flex;align-items:baseline;gap:10pt}
   .kicker{display:none}
-  h1{font-size:16pt;margin:0}
+  h1{font-size:18pt;margin:0}
   .dateline{font-size:10pt;margin:0}
   .banner{margin:4pt 0;padding:2pt 6pt;font-size:8pt;border-radius:0}
   section{margin:0;break-inside:avoid}
-  .shead{gap:5pt;padding-bottom:1pt;margin:7pt 0 1pt;border-bottom:.8pt solid #000;break-after:avoid}
-  .snum,.shead h2{font-size:12pt;min-width:0}
+  .shead{gap:5pt;padding-bottom:1pt;margin:6pt 0 1pt;border-bottom:.8pt solid #000;break-after:avoid}
+  /* 字級階層：報名 18pt ＞ 章節標題 14pt ＞ 小標 11pt ＞ 內文 10pt ＞ 表格 9.5pt（使用者指定標題比內容大一級） */
+  .snum,.shead h2{font-size:14pt;min-width:0}
   .shead .tag{display:none}
-  .blk h3{font-size:10pt;margin:3pt 0 0}
+  .blk h3{font-size:11pt;margin:2pt 0 0;line-height:1.3}
   .blk b,td b{font-weight:700}
   .sum{margin:3pt 0 0;padding-left:13pt}
-  .sum li{margin:1.5pt 0;line-height:1.45;font-size:10pt}
+  .sum li{margin:1pt 0;line-height:1.4;font-size:10pt}
   .tbl-wrap,.wrap{overflow:visible}
   table.data{margin:1pt 0 0;font-size:9.5pt}
-  table.data th,table.data td{padding:1.4pt 4pt;font-size:9.5pt;line-height:1.3}
+  table.data th,table.data td{padding:1.1pt 4pt;font-size:9.5pt;line-height:1.3}
   table.data th:first-child,table.data td:first-child{padding-left:0}
   td:first-child{font-size:9.5pt}
   tbody tr:hover td{background:none}

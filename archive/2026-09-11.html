@@ -313,20 +313,21 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   .toolbar,.toast,.glance,.about{display:none !important}
   .masthead{padding:0 0 3pt;border-bottom:1.5pt solid #000;display:flex;align-items:baseline;gap:10pt}
   .kicker{display:none}
-  h1{font-size:16pt;margin:0}
+  h1{font-size:18pt;margin:0}
   .dateline{font-size:10pt;margin:0}
   .banner{margin:4pt 0;padding:2pt 6pt;font-size:8pt;border-radius:0}
   section{margin:0;break-inside:avoid}
-  .shead{gap:5pt;padding-bottom:1pt;margin:7pt 0 1pt;border-bottom:.8pt solid #000;break-after:avoid}
-  .snum,.shead h2{font-size:12pt;min-width:0}
+  .shead{gap:5pt;padding-bottom:1pt;margin:6pt 0 1pt;border-bottom:.8pt solid #000;break-after:avoid}
+  /* 字級階層：報名 18pt ＞ 章節標題 14pt ＞ 小標 11pt ＞ 內文 10pt ＞ 表格 9.5pt（使用者指定標題比內容大一級） */
+  .snum,.shead h2{font-size:14pt;min-width:0}
   .shead .tag{display:none}
-  .blk h3{font-size:10pt;margin:3pt 0 0}
+  .blk h3{font-size:11pt;margin:2pt 0 0;line-height:1.3}
   .blk b,td b{font-weight:700}
   .sum{margin:3pt 0 0;padding-left:13pt}
-  .sum li{margin:1.5pt 0;line-height:1.45;font-size:10pt}
+  .sum li{margin:1pt 0;line-height:1.4;font-size:10pt}
   .tbl-wrap,.wrap{overflow:visible}
   table.data{margin:1pt 0 0;font-size:9.5pt}
-  table.data th,table.data td{padding:1.4pt 4pt;font-size:9.5pt;line-height:1.3}
+  table.data th,table.data td{padding:1.1pt 4pt;font-size:9.5pt;line-height:1.3}
   table.data th:first-child,table.data td:first-child{padding-left:0}
   td:first-child{font-size:9.5pt}
   tbody tr:hover td{background:none}
@@ -355,13 +356,14 @@ table.data.lftall th,table.data.lftall td{text-align:left}
 
 </style></head>
 <body data-report-date="2026-09-11">
-<div class="toolbar">
-  <a class="btn" id="lnk-archive" href="archive/">☰ 歷史查詢</a>
-  <button class="btn" id="btn-theme" type="button">深淺色</button>
-  <button class="btn" id="btn-save" type="button">另存 HTML</button>
-  <button class="btn" id="btn-print" type="button">列印</button>
-</div>
 <main class="sheet">
+<!-- 工具列與美股版一致：置於 .sheet 內（對齊內容欄右緣）、順序與標示相同 -->
+<nav class="toolbar" aria-label="檔案工具">
+  <a class="btn" id="lnk-archive" href="archive/">☰ 歷史查詢</a>
+  <button class="btn" id="btn-save" type="button">⤓ 另存新檔（HTML）</button>
+  <button class="btn" id="btn-print" type="button">⎙ 列印（A4 精簡版）</button>
+  <button class="btn" id="btn-theme" type="button">◐ 深／淺色</button>
+</nav>
 <header class="masthead"><p class="kicker">Taiwan Financial Market Daily</p><h1>台灣金融市場日報</h1><p class="dateline"><b>2026/09/11</b></p></header><section class="shead"><span class="snum">·</span><h2>重點速覽</h2><span class="tag">At a glance</span></section><div class="glance">
 <div class="g"><div class="lab">10年期台債</div><div class="val">1.9205%</div><div class="chg"><span class="flat">無成交（沿用 09/07）</span></div></div>
 <div class="g"><div class="lab">加權指數</div><div class="val">46,184.85</div><div class="chg"><span class="down">-755.64</span>　<span class="down">-1.61%</span></div></div>
@@ -375,8 +377,8 @@ table.data.lftall th,table.data.lftall td{text-align:left}
 <h3>2-10 天期附買回（RP）利率</h3>
 <div class="tbl-wrap"><table class="data"><thead><tr><th>項目</th><th>當日(09/11)</th><th>前日(09/10)</th><th>變動</th></tr></thead><tbody><tr><td>加權平均利率(%)</td><td>1.3098</td><td>1.4510</td><td><span class="down">-14.12</span>bp</td></tr><tr><td>成交金額（億元）</td><td>286.75</td><td>192.11</td><td><span class="up">+94.64</span></td></tr></tbody></table></div>
 </div></div></div><div class="blk" id="fx"><section class="shead"><span class="snum">四</span><h2>美元兌新台幣銀行間收盤匯率</h2></section><div class="tbl-wrap"><table class="data"><thead><tr><th>項目</th><th>當日</th><th>前一外匯交易日</th><th>變動</th></tr></thead><tbody><tr><td>收盤匯率</td><td>31.638</td><td>31.548（09/10）</td><td><span class="up">+0.090</span>　<b class="up">貶 9 分</b></td></tr></tbody></table></div><p class="note">中央社當日收盤快訊未取得（其檢索通常僅涵蓋最新一個交易日），故無盤中高低與成交金額。</p></div></div><div class="secs secs-p2"><div class="blk" id="history"><section class="shead"><span class="snum">五</span><h2>近期走勢</h2></section><div class="tbl-wrap"><table class="data"><thead><tr><th>日期</th><th>匯率</th><th>10年期台債(%)</th><th>台股收盤</th><th>漲跌幅(%)</th><th>成交量(億)</th><th>外資</th><th>投信</th><th>自營商</th><th>法人合計</th></tr></thead><tbody><tr><td>09/07</td><td>31.552</td><td>1.9205</td><td>47,326.27</td><td><span class="up">+1.67</span></td><td>9,979.45</td><td><span class="up">+883.08</span></td><td><span class="up">+87.24</span></td><td><span class="up">+156.87</span></td><td><span class="up">+1,127.19</span></td></tr><tr><td>09/08</td><td>31.535</td><td><span class="stale">1.9205*</span></td><td>47,105.78</td><td><span class="down">-0.47</span></td><td>9,226.58</td><td><span class="up">+132.69</span></td><td><span class="down">-72.43</span></td><td><span class="down">-185.40</span></td><td><span class="down">-125.15</span></td></tr><tr><td>09/09</td><td>31.505</td><td><span class="stale">1.9205*</span></td><td>47,183.36</td><td><span class="up">+0.16</span></td><td>8,159.77</td><td><span class="up">+209.24</span></td><td><span class="up">+20.85</span></td><td><span class="down">-18.84</span></td><td><span class="up">+211.25</span></td></tr><tr><td>09/10</td><td>31.548</td><td><span class="stale">1.9205*</span></td><td>46,940.49</td><td><span class="down">-0.51</span></td><td>7,507.43</td><td><span class="down">-383.34</span></td><td><span class="up">+33.51</span></td><td><span class="down">-137.64</span></td><td><span class="down">-487.47</span></td></tr><tr><td>09/11</td><td>31.638</td><td><span class="stale">1.9205*</span></td><td>46,184.85</td><td><span class="down">-1.61</span></td><td>7,622.45</td><td><span class="down">-892.70</span></td><td><span class="up">+82.14</span></td><td><span class="down">-302.02</span></td><td><span class="down">-1,112.59</span></td></tr></tbody></table></div><p class="note">10 年期台債標 * 者當日無成交，殖利率沿用最近成交日報價，非當日市場價格。</p><p class="note">5 日累計法人買賣超（億元）：外資 -51.04；投信 +151.30；自營商 -487.02；合計 -386.76。</p></div><div class="blk" id="econ"><section class="shead"><span class="snum">六</span><h2>台灣重要經濟數據</h2></section><div class="tbl-wrap"><table class="data"><thead><tr><th>指標</th><th>資料期</th><th>數值</th><th>前期</th><th>變動</th></tr></thead><tbody><tr><td>CPI 年增率</td><td>2026/08</td><td><b>2.04</b> %</td><td>2.52</td><td><span class="down">-0.48</span> <small>pp</small></td></tr><tr><td>核心 CPI 年增率</td><td>2026/08</td><td><b>2.30</b> %</td><td>2.36</td><td><span class="down">-0.06</span> <small>pp</small></td></tr><tr><td>海關出口金額</td><td>2026/08</td><td><b>824.0</b> 億美元</td><td>753.0</td><td><span class="up">+71.0</span> <small>(+9.4%)</small></td></tr><tr><td>海關進口金額</td><td>2026/08</td><td><b>601.0</b> 億美元</td><td>581.3</td><td><span class="up">+19.8</span> <small>(+3.4%)</small></td></tr><tr><td>外銷訂單</td><td>2026/07</td><td><b>97,939</b> 百萬美元</td><td>95,262</td><td><span class="up">+2,677</span> <small>(+2.8%)</small></td></tr><tr><td>失業率</td><td>2026/07</td><td><b>3.39</b> %</td><td>3.34</td><td><span class="up">+0.05</span> <small>pp</small></td></tr><tr><td>經濟成長率（yoy）</td><td>2026 Q2</td><td><b>12.93</b> %</td><td>15.43</td><td><span class="down">-2.50</span> <small>pp</small></td></tr></tbody></table></div><p class="note">註：不設「預期」欄：台灣無公開且免費的市場一致預期來源；pp＝百分點。資料來源：行政院主計總處統計資料庫（前期值）與「重要經社指標」（最新一期）；海關進出口貿易量值原始編製機關為財政部、外銷訂單為經濟部。</p></div><div class="blk" id="cbc"><section class="shead"><span class="snum">七</span><h2>央行動態</h2></section><div class="tbl-wrap"><table class="data"><tbody><tr><td>重貼現率</td><td class="lft"><b>2.000%</b>（2024-03-22 起實施）</td></tr><tr><td>上次調整</td><td class="lft"><span class="up">升息 12.5 bp</span>，由 1.875% 調整為 2.000%</td></tr><tr><td>上次理監事會議</td><td class="lft">2026-06-18</td></tr><tr><td>下次理監事會議</td><td class="lft"><b>2026-09-17</b>　6 天後 <b>（即將召開）</b></td></tr></tbody></table></div><p class="note">資料來源：中央銀行「央行貼放利率」與「理監事聯席會議預定日期」。</p></div><div class="blk" id="calendar"><section class="shead"><span class="snum">八</span><h2>未來關鍵事件（7 日內）</h2></section><div class="tbl-wrap"><table class="data lftall"><thead><tr><th>日期</th><th>時間</th><th>發布單位</th><th>項目</th><th>資料期</th></tr></thead><tbody><tr><td>09-14</td><td>16:00</td><td>行政院主計總處</td><td>受僱員工人數、進退率、薪資、平均工時、勞動生產力與單位產出勞動成本</td><td>(11507)</td></tr><tr><td>09-14</td><td>16:00</td><td>行政院主計總處</td><td>受僱員工薪資中位數及分布統計結果</td><td>(11507)</td></tr><tr><td>09-17</td><td></td><td>中央銀行</td><td><b>理監事聯席會議（利率決策）</b></td><td>-</td></tr><tr><td>09-18</td><td>10:00</td><td>財政部</td><td>海關進出口貿易量值</td><td>(11507)</td></tr></tbody></table></div><p class="note">資料來源：行政院主計總處「預告統計資料發布時間表」。</p></div></div><section class="about"><h2>關於本頁</h2><dl><dt>資料來源</dt><dd>臺灣證券交易所、證券櫃檯買賣中心、中央銀行、行政院主計總處（含統計資料庫）、財政部、經濟部、中央通訊社。各節下方另註明個別來源與資料期。</dd></dl></section><p class="pfoot">資料來源：臺灣證券交易所、證券櫃檯買賣中心、中央銀行、行政院主計總處、財政部、經濟部、中央通訊社。</p>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 </main>
-<div id="toast" class="toast"></div>
 <script>(function(){
   var DATE = document.body.dataset.reportDate || '';
 
