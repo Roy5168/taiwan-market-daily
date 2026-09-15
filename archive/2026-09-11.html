@@ -339,8 +339,9 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   /* 半欄表格：固定版面、表頭與數值可折行，任何字型下都不會寬過欄位；
      右欄再留 6pt 安全邊，避免印表機實體邊界吃掉最右一欄（RP 變動曾被截，2026-09-14） */
   .pair table.data{table-layout:fixed;width:100%}
-  .pair th,.pair td{white-space:normal;overflow-wrap:anywhere}
-  .pair th:first-child,.pair td:first-child{width:34%}
+  /* 權重須高於 table.data th/td 的 nowrap（0,1,2），否則字放大時表頭互相重疊 */
+  .pair table.data th,.pair table.data td{white-space:normal;overflow-wrap:anywhere}
+  .pair table.data th:first-child,.pair table.data td:first-child{width:34%}
   /* 央行決議句、事件名稱為長文字，紙本允許折行 */
   #cbc td,#calendar td{white-space:normal}
   #cbc td:first-child,#calendar td:first-child{white-space:nowrap}
