@@ -438,10 +438,13 @@ table.data.lftall th,table.data.lftall td{text-align:left}
 
   /* 深／淺色：僅存在本機瀏覽器，讀取失敗不影響頁面 */
   var KEY = 'twmkt-theme';   // 與美股站同網域，key 須分開
-  try {
-    var saved = localStorage.getItem(KEY);
-    if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
-  } catch (e) {}
+  /* 頁面若以 data-lock-theme 鎖定主題，就不套用使用者存下的偏好 */
+  if (!document.documentElement.hasAttribute('data-lock-theme')) {
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  }
 
   on('btn-theme', function(){
     var cur = document.documentElement.getAttribute('data-theme');
