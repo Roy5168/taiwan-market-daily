@@ -299,6 +299,13 @@ table.data td.lft{text-align:left}
 /* 整張表都是文字敘述者（如未來關鍵事件）表頭與內容一律靠左 */
 table.data.lftall th,table.data.lftall td{text-align:left}
 
+/* 螢幕版：表格放在與速覽卡片同色的白底框內（紙本不套用，維持 A4 兩頁版面） */
+@media screen{
+  .tbl-wrap{background:var(--paper-2);border:1px solid var(--rule);margin:.5rem 0 .2rem}
+  .tbl-wrap table.data{margin:0}
+  .secs .blk{padding-bottom:26px}
+}
+
 /* ── 列印版：A4 直式、最多 2 頁（給長官參閱的紙本）──────────
    不是網頁原樣套印：隱藏工具列／速覽卡片／關於本頁，字級縮到 9.5–10pt，小表兩兩併排。
    本段須置於檔尾，才能蓋過前面同權重的 table.data／.note 規則。版面以 headless Chrome 列印 + pdfinfo 驗證頁數。 */
