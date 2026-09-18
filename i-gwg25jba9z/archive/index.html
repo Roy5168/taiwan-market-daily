@@ -307,6 +307,20 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   .secs .blk{padding-bottom:26px}
 }
 
+
+/* 一 台灣債市行情：小標與標籤 */
+.blk h3{font-size:1rem;margin:1.1rem 0 .1rem;font-weight:700;color:var(--ink)}
+.blk h3:first-child{margin-top:.4rem}
+.blk p.sub{margin:.6rem 0 0;font-size:.86rem;color:var(--ink-2);font-weight:600}
+.kind{display:inline-block;font-size:.78rem;padding:0 .4em;border:1px solid var(--rule);border-radius:3px;color:var(--ink-2);line-height:1.5}
+.kind.bench{border-color:var(--ink);color:var(--ink);font-weight:600}
+.kind.wi{border-style:dashed}
+.rchip{display:inline-block;font-family:var(--mono);font-size:.78rem;padding:0 .5em;border:1px solid var(--ink-2);border-radius:99px;color:var(--ink-2);line-height:1.55}
+.rchip.none{border-color:var(--rule);color:var(--ink-3)}
+table.data.bmk{font-size:.9rem}
+/* 台灣債市行情：全部表格標題與數值都靠左 */
+#bond table.data th,#bond table.data td{text-align:left}
+
 /* ── 列印版：A4 直式、最多 2 頁（給長官參閱的紙本）──────────
    不是網頁原樣套印：隱藏工具列／速覽卡片／關於本頁，字級縮到 9.5–10pt，小表兩兩併排。
    本段須置於檔尾，才能蓋過前面同權重的 table.data／.note 規則。版面以 headless Chrome 列印 + pdfinfo 驗證頁數。 */
@@ -364,7 +378,18 @@ table.data.lftall th,table.data.lftall td{text-align:left}
   .part-inst .note,#fx .note,#econ .note{display:none}
   .pfoot{display:block;margin:6pt 0 0;padding-top:2pt;border-top:.6pt solid #999;font-size:7pt;color:#444}
 }
-
+/* 台灣債市行情 紙本：明細表縮小字級 */
+@media print{
+  .blk h3{font-size:10.5pt;margin:3pt 0 0}
+  .blk p.sub{font-size:8.5pt;margin:2pt 0 0}
+  table.data.bmk th,table.data.bmk td{font-size:8pt;padding:.8pt 3pt}
+  .kind,.rchip{font-size:7pt;padding:0 .3em;border-width:.5pt}
+  /* 紙本：債市行情的附註不印、明細表最多印 8 列（其餘在網頁）*/
+  #bond .note{display:none}
+  table.data.bmk tbody tr:nth-child(n+9){display:none}
+  table.data.bmk{margin-top:0}
+  .blk#bond h3{margin-top:2pt}
+}
 
 .arc{list-style:none;padding:0;margin:.4rem 0 0;display:grid;
   grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.4rem}
