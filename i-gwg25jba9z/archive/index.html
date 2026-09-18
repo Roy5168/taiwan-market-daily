@@ -318,6 +318,15 @@ table.data.lftall th,table.data.lftall td{text-align:left}
 .rchip{display:inline-block;font-family:var(--mono);font-size:.78rem;padding:0 .5em;border:1px solid var(--ink-2);border-radius:99px;color:var(--ink-2);line-height:1.55}
 .rchip.none{border-color:var(--rule);color:var(--ink-3)}
 table.data.bmk{font-size:.9rem}
+.curvebox{margin:.5rem 0 .1rem;border:1px solid var(--rule);background:var(--paper-2);padding:.4rem .2rem .1rem}
+.curvebox svg.ycurve{display:block;width:100%;height:auto}
+.clegend{margin:.3rem 0 0;font-size:.82rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+.clegend .lg{display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}
+.clegend i{display:inline-block;width:18px;height:0;border-top:2px solid var(--ink)}
+.clegend i.l-cmp{border-top:1.4px dashed var(--ink-3)}
+.clegend i.l-cmp2{border-top-style:dotted}
+.clegend i.l-trd{width:8px;height:8px;border:0;border-radius:50%;background:var(--mark)}
+.clegend i.l-stale{width:9px;height:9px;border:1.8px solid var(--ink);border-radius:50%;background:var(--paper)}
 /* 台灣債市行情：全部表格標題與數值都靠左 */
 #bond table.data th,#bond table.data td{text-align:left}
 
@@ -384,6 +393,12 @@ table.data.bmk{font-size:.9rem}
   .blk p.sub{font-size:8.5pt;margin:2pt 0 0}
   table.data.bmk th,table.data.bmk td{font-size:8pt;padding:.8pt 3pt}
   .kind,.rchip{font-size:7pt;padding:0 .3em;border-width:.5pt}
+  /* 殖利率曲線：紙本縮小，維持可讀 */
+  .curvebox{padding:1pt 0 0;margin:2pt 0 0}
+  .curvebox{width:104mm}
+  .curvebox svg.ycurve{width:100%}
+  /* 圖例與圖同寬，紙本才不會圖只佔半頁、說明卻橫跨整頁 */
+  .clegend{font-size:7pt;gap:.1rem .5rem;margin:1pt 0 0;max-width:104mm}
   /* 紙本：債市行情的附註不印、明細表最多印 8 列（其餘在網頁）*/
   #bond .note{display:none}
   table.data.bmk tbody tr:nth-child(n+9){display:none}
