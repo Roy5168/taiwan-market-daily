@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light" data-lock-theme="1"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>台灣金融市場日報 2026/10/30</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<style>:root{
+  --paper:#f7f4ee;
+  --paper-2:#fffdf8;
+  --ink:#1b1a17;
+  --ink-2:#4a4740;
+  --ink-3:#807b70;
+  --rule:#d8d2c4;
+  --rule-soft:#e7e2d6;
+  --up:#a8322d;      /* 漲：紅（台灣慣例） */
+  --down:#2c6b52;    /* 跌：綠 */
+  --flat:#807b70;
+  --mark:#8a6d1f;
+  --band:#efe9dc;
+  /* 英數一律 Times New Roman；中文向後備援至 Noto TC / PingFang */
+  --serif:"Times New Roman",Times,"Noto Serif TC","Songti TC",serif;
+  --sans:"Times New Roman",Times,"Noto Sans TC","PingFang TC",serif;
+  --mono:"Times New Roman",Times,"Noto Sans TC","PingFang TC",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#15171a; --paper-2:#1b1e22; --ink:#ece7dd; --ink-2:#b6b0a5;
+    --ink-3:#8b857b; --rule:#33383e; --rule-soft:#262b30;
+    --up:#e2685f; --down:#5fb894; --flat:#8b857b; --mark:#d8b45f;
+    --band:#20242a;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15171a; --paper-2:#1b1e22; --ink:#ece7dd; --ink-2:#b6b0a5;
+  --ink-3:#8b857b; --rule:#33383e; --rule-soft:#262b30;
+  --up:#e2685f; --down:#5fb894; --flat:#8b857b; --mark:#d8b45f;
+  --band:#20242a;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:400; font-size:16.5px; line-height:1.7;
+  font-variant-numeric:lining-nums tabular-nums;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(0,0,0,.025), transparent 45%),
+    radial-gradient(circle at 88% 4%, rgba(0,0,0,.02), transparent 40%);
+}
+.sheet{max-width:940px;margin:0 auto;padding:0 22px 72px}
+
+/* ── 工具列 ───────────────────────── */
+.toolbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;
+  padding:10px 0 9px;margin-bottom:-4px;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:saturate(140%) blur(8px);
+  -webkit-backdrop-filter:saturate(140%) blur(8px);
+}
+.btn{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;
+  color:var(--ink-2);background:var(--paper-2);
+  border:1px solid var(--rule);border-radius:2px;
+  padding:7px 13px;cursor:pointer;line-height:1.4;
+  transition:border-color .15s, color .15s, background .15s;
+}
+.btn:hover{border-color:var(--ink);color:var(--ink)}
+.btn:active{background:var(--band)}
+.btn:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:13.5px;
+  padding:10px 18px;border-radius:2px;opacity:0;pointer-events:none;
+  transition:opacity .22s, transform .22s;z-index:99;max-width:86vw;text-align:center;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── 報頭 ─────────────────────────── */
+.masthead{padding:38px 0 16px;border-bottom:2.5px solid var(--ink)}
+.kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+h1{
+  font-family:var(--serif);font-weight:700;font-size:clamp(30px,5.4vw,48px);
+  line-height:1.12;letter-spacing:.01em;margin:12px 0 6px;
+}
+h1 .thin{font-weight:400;color:var(--ink-2)}
+.dateline{
+  font-family:var(--mono);font-size:14px;color:var(--ink-2);
+  display:flex;gap:18px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px;
+}
+.dateline b{color:var(--ink);font-weight:600}
+.standfirst{
+  font-family:var(--serif);font-size:17.5px;line-height:1.72;color:var(--ink-2);
+  max-width:64ch;margin:0 0 22px;
+}
+
+/* ── 速覽 ─────────────────────────── */
+/* 格線改由各卡片自己畫，不用「容器底色透出縫隙」的手法——
+   卡片數為奇數時，最後一個空格會露出容器灰底，看起來像壞掉的空卡。*/
+.glance{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+  gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);
+  margin:0 0 34px;
+}
+.g{background:var(--paper-2);padding:13px 14px 12px;
+  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.g .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+.g .val{font-family:var(--mono);font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:4px;font-variant-numeric:tabular-nums}
+.g .chg{font-family:var(--mono);font-size:13px;margin-top:2px;font-variant-numeric:tabular-nums}
+
+/* ── 章節 ─────────────────────────── */
+section{margin:0 0 42px;scroll-margin-top:16px}
+.shead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--ink);padding-bottom:7px;margin-bottom:4px}
+.snum{
+  font-family:var(--serif);font-size:34px;font-weight:400;line-height:1;
+  color:var(--ink-3);min-width:38px;
+}
+/* 章節標題與序號同級（桌機 34px／手機 27px），兩處數值須與 .snum 同步調整 */
+.shead h2{font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:.02em;margin:0;flex:1;line-height:1.15}
+.shead .tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+
+/* ── 表格 ─────────────────────────── */
+.wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+caption{text-align:left;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);padding:14px 0 8px}
+/* 表頭字級與表格內容（td 15px）相同；原 11.5px 過小。字距同步收小，避免寬表被撐開 */
+th{
+  font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--ink-3);text-align:right;
+  padding:10px 10px 8px;border-bottom:1px solid var(--rule);white-space:nowrap;
+}
+th:first-child{text-align:left;padding-left:0}
+td{
+  padding:11px 10px;border-bottom:1px solid var(--rule-soft);
+  font-family:var(--mono);font-size:15px;text-align:right;white-space:nowrap;
+}
+td:first-child{
+  text-align:left;padding-left:0;font-family:var(--sans);font-size:15.5px;
+  font-weight:500;white-space:normal;
+}
+tbody tr:hover td{background:var(--band)}
+.px{font-size:16.5px;font-weight:700}
+.up{color:var(--up)}
+.down{color:var(--down)}
+.flat{color:var(--flat)}
+.dim{color:var(--ink-3);font-size:13.5px}
+.note{
+  font-size:14.5px;line-height:1.62;color:var(--ink-2);
+  padding:9px 0 13px 16px;border-left:2px solid var(--rule);
+  margin:-2px 0 14px 0;background:transparent;
+}
+.note b{color:var(--ink);font-weight:500}
+tr.sub td{border-bottom:none;padding-top:0;padding-bottom:12px}
+tr.sub td .note{margin:0;padding-bottom:0}
+.spread-row td:first-child{font-weight:700}
+.spread-row td{background:var(--band)}
+
+/* ── 事件時間軸 ────────────────────── */
+.events{list-style:none;margin:14px 0 0;padding:0}
+.events li{
+  display:grid;grid-template-columns:152px 1fr;gap:16px;
+  padding:14px 0;border-bottom:1px solid var(--rule-soft);
+}
+.events .when{font-family:var(--mono);font-size:14px;color:var(--ink-2);line-height:1.5}
+.events .when b{display:block;color:var(--ink);font-size:15px;font-weight:600}
+.events .what{font-size:15.5px}
+.events .what .sub{display:block;color:var(--ink-2);font-size:14.5px;margin-top:3px}
+.events li.hot .when b{color:var(--up)}
+
+/* ── Fed 機率條 ────────────────────── */
+.probs{margin-top:16px}
+.bar{display:flex;height:32px;border:1px solid var(--rule);overflow:hidden;font-family:var(--mono)}
+.bar span{
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--paper-2);
+  /* 窄區塊絕不可折行或溢出，否則會像「維持不變 12.7%」那樣被截斷 */
+  white-space:nowrap;overflow:hidden;padding:0 4px;min-width:0;
+}
+.bar .b1{flex:70;background:var(--up)}
+.bar .b2{flex:30;background:var(--ink-3)}
+.bar .b3{flex:0.6;background:var(--rule);color:var(--ink-3)}
+.legend{
+  display:flex;gap:20px;flex-wrap:wrap;margin-top:9px;
+  font-family:var(--mono);font-size:12.5px;color:var(--ink-2);
+}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.legend span{display:inline-flex;align-items:center}
+
+/* ── 觀察重點 ───────────────────────── */
+/* 三欄都是中文敘述，必須可折行並固定比例分配；
+   否則門檻欄（繼承通用 nowrap）會獨佔寬度，把「意義」欄壓到只剩幾十 px。*/
+.watch{table-layout:fixed}
+.watch td{white-space:normal;vertical-align:top}
+.watch th:first-child,.watch td:first-child{width:26%}
+.watch th:nth-child(2),.watch td:nth-child(2){width:20%;text-align:left}
+.watch th:last-child,.watch td:last-child{width:54%;text-align:left}
+.watch td:nth-child(2){font-weight:600;color:var(--mark);font-family:var(--mono)}
+.watch td:last-child{font-family:var(--sans);font-size:14.5px;color:var(--ink-2)}
+.watch th:nth-child(2),.watch th:last-child{text-align:left}
+
+/* ── 來源／頁尾 ─────────────────────── */
+.sources{border-top:2.5px solid var(--ink);margin-top:52px;padding-top:18px}
+.sources h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;font-weight:500}
+.sources ol{margin:0;padding-left:20px}
+.sources li{font-size:14px;line-height:1.6;margin-bottom:9px;color:var(--ink-2)}
+.sources a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-all}
+.sources a:hover{border-bottom-color:var(--ink)}
+.colophon{
+  margin-top:26px;padding-top:16px;border-top:1px solid var(--rule);
+  font-size:13px;line-height:1.66;color:var(--ink-3);
+}
+.colophon .disc{font-family:var(--serif);font-size:13.5px;color:var(--ink-2)}
+.keyline{
+  display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;
+  color:var(--ink-3);letter-spacing:.06em;margin-top:10px;
+}
+.keyline i{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px}
+
+@media (max-width:600px){
+  body{font-size:15.5px}
+  /* 手機比例實測：26/28/46 時最高列 3 行；門檻欄再窄（22%）會讓長門檻折成 5 行 */
+  .watch th:first-child,.watch td:first-child{width:26%}
+  .watch th:nth-child(2),.watch td:nth-child(2){width:28%}
+  .watch th:last-child,.watch td:last-child{width:46%}
+  .watch td{font-size:13.5px;padding-left:6px;padding-right:6px}
+  .watch td:last-child{font-size:13.5px}
+  .sheet{padding:0 16px 56px}
+  .snum{font-size:27px;min-width:30px}
+  .shead h2{font-size:27px}
+  .events li{grid-template-columns:1fr;gap:5px}
+  td,th{padding-left:8px;padding-right:8px}
+}
+.pfoot{display:none}
+
+/* ── 通用條列（無法表格化的章節）──────────── */
+.plain{list-style:none;margin:14px 0 0;padding:0}
+.plain li{padding:11px 0;border-bottom:1px solid var(--rule-soft)}
+.plain li:last-child{border-bottom:none}
+.plain .it{display:block;font-size:15.5px;line-height:1.62}
+.plain .note{margin:7px 0 0;padding-bottom:0}
+
+/* 機率條圖例色塊 */
+.legend i.b1{background:var(--up)}
+.legend i.b2{background:var(--ink-3)}
+.legend i.b3{background:var(--down)}
+.bar .b3{background:var(--down)}
+
+/* 指數／殖利率表：首欄名稱不折行，數值才對得齊 */
+.tight td:first-child{white-space:nowrap}
+/* 無法欄位化的原句（如 VIX 各日寫法不一），整段照登 */
+td.freetext{text-align:left;white-space:normal;font-family:var(--sans);
+  font-size:14px;line-height:1.55}
+
+/* 機率條：未載明的部分（不做推算，據實標示） */
+.bar .b0{background:repeating-linear-gradient(45deg,var(--rule) 0 6px,var(--rule-soft) 6px 12px);
+  color:var(--ink-3)}
+.legend i.b0{background:repeating-linear-gradient(45deg,var(--rule) 0 4px,var(--rule-soft) 4px 8px)}
+/* 殖利率表天期欄：收窄，把寬度讓給數值欄 */
+.tight th:first-child,.tight td:first-child{width:1%}
+
+/* 機率條標題（來源與時間戳）*/
+.probcap{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);padding:0 0 8px}
+
+/* ── 台灣金融市場日報：追加樣式 ───────────────────────── */
+.banner{border:1px solid var(--mark);background:var(--band);color:var(--ink);
+  border-radius:6px;padding:.6rem .9rem;margin:1rem 0;font-size:.94rem;line-height:1.6}
+.banner b{color:var(--mark)}
+.note{color:var(--ink-3);font-size:.86rem;line-height:1.6;margin:.35rem 0 0}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.data{width:100%;border-collapse:collapse;margin:.5rem 0 .2rem;font-size:.95rem}
+table.data th,table.data td{border-bottom:1px solid var(--rule-soft);padding:.45rem .55rem;
+  white-space:nowrap;text-align:right}
+table.data th{color:var(--ink-2);font-weight:600;border-bottom:1px solid var(--rule);text-align:right}
+table.data th:first-child,table.data td:first-child{text-align:left}
+table.data tr:last-child td{border-bottom:none}
+table.data tr.total td{font-weight:700;border-top:1px solid var(--rule)}
+.stale{color:var(--ink-3)}
+.sum li{margin:.3rem 0;line-height:1.7}
+
+/* 關於本頁：來歷說明，字級小於正文但需清楚可讀。
+   變數須用本檔實際定義者：--rule（線）／--ink-3（次要字）／--band（淡底），
+   不可自創 --line/--muted/--bg-soft，未定義的 var() 會讓 border-color 退回 currentColor。 */
+.about{margin:28px 0 0;padding:16px 18px;border:1px solid var(--rule);border-radius:6px;
+       background:var(--band)}
+.about h2{margin:0 0 10px;font-size:1.02em;letter-spacing:.04em;border:0;padding:0}
+.about dl{margin:0;display:grid;grid-template-columns:5.6em 1fr;gap:6px 14px}
+.about dt{font-weight:600;color:var(--ink-3)}
+.about dd{margin:0;line-height:1.65;min-width:0;overflow-wrap:anywhere}
+.about a{color:inherit}
+@media(max-width:520px){.about dl{grid-template-columns:1fr;gap:2px 0}
+  .about dd{margin:0 0 8px}}
+
+/* 跨欄的單值列（如匯率的開盤／盤中高低／成交金額）靠左 */
+table.data td.lft{text-align:left}
+/* 整張表都是文字敘述者（如未來關鍵事件）表頭與內容一律靠左 */
+table.data.lftall th,table.data.lftall td{text-align:left}
+
+/* 螢幕版：表格放在與速覽卡片同色的白底框內（紙本不套用，維持 A4 兩頁版面） */
+@media screen{
+  .prt-note{display:none}
+  .tbl-wrap{background:var(--paper-2);border:1px solid var(--rule);margin:.5rem 0 .2rem}
+  .tbl-wrap table.data{margin:0}
+  .secs .blk{padding-bottom:26px}
+}
+
+
+/* 一 台灣債市行情：小標與標籤 */
+.blk h3{font-size:1rem;margin:1.1rem 0 .1rem;font-weight:700;color:var(--ink)}
+.blk h3:first-child{margin-top:.4rem}
+.blk p.sub{margin:.6rem 0 0;font-size:.86rem;color:var(--ink-2);font-weight:600}
+.kind{display:inline-block;font-size:.78rem;padding:0 .4em;border:1px solid var(--rule);border-radius:3px;color:var(--ink-2);line-height:1.5}
+.kind.bench{border-color:var(--ink);color:var(--ink);font-weight:600}
+.kind.wi{border-style:dashed}
+.rchip{display:inline-block;font-family:var(--mono);font-size:.78rem;padding:0 .5em;border:1px solid var(--ink-2);border-radius:99px;color:var(--ink-2);line-height:1.55}
+.rchip.none{border-color:var(--rule);color:var(--ink-3)}
+table.data.bmk{font-size:.9rem}
+.curvebox{margin:.5rem 0 .1rem;border:1px solid var(--rule);background:var(--paper-2);padding:.4rem .2rem .1rem}
+.curvebox svg.ycurve{display:block;width:100%;height:auto}
+.clegend{margin:.3rem 0 0;font-size:.82rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+.clegend .lg{display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}
+.clegend i{display:inline-block;width:18px;height:0;border-top:2px solid var(--ink)}
+.clegend i.l-cmp{border-top:1.4px dashed var(--ink-3)}
+.clegend i.l-cmp2{border-top-style:dotted}
+.clegend i.l-trd{width:8px;height:8px;border:0;border-radius:50%;background:var(--mark)}
+.clegend i.l-stale{width:9px;height:9px;border:1.8px solid var(--ink);border-radius:50%;background:var(--paper)}
+/* 台灣債市行情：全部表格標題與數值都靠左 */
+#bond table.data th,#bond table.data td{text-align:left}
+
+/* ── 列印版：A4 直式、最多 2 頁（給長官參閱的紙本）──────────
+   不是網頁原樣套印：隱藏工具列／速覽卡片／關於本頁，字級縮到 9.5–10pt，小表兩兩併排。
+   本段須置於檔尾，才能蓋過前面同權重的 table.data／.note 規則。版面以 headless Chrome 列印 + pdfinfo 驗證頁數。 */
+@media print{
+  @page{size:A4;margin:10mm 12mm}
+  /* :root 疊三次以提高權重，蓋過深色模式的 :root[data-theme="dark"]，紙本一律白底黑字 */
+  :root:root:root{--paper:#fff;--paper-2:#fff;--ink:#000;--ink-2:#222;--ink-3:#555;
+    --rule:#999;--rule-soft:#ccc;--band:#f1f1f1;--up:#b0201a;--down:#1d6b45;--mark:#7a5a00}
+  html,body{background:#fff !important;background-image:none !important}
+  body{font-size:10pt;line-height:1.4;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{max-width:none;padding:0}
+  .toolbar,.toast,.glance,.about{display:none !important}
+  .masthead{padding:0 0 3pt;border-bottom:1.5pt solid #000;display:flex;align-items:baseline;gap:10pt}
+  .kicker{display:none}
+  h1{font-size:18pt;margin:0}
+  .dateline{font-size:10pt;margin:0}
+  .banner{margin:4pt 0;padding:2pt 6pt;font-size:8pt;border-radius:0}
+  section{margin:0;break-inside:avoid}
+  .shead{gap:5pt;padding-bottom:1pt;margin:5pt 0 1pt;border-bottom:.8pt solid #000;break-after:avoid}
+  /* 字級階層：報名 18pt ＞ 章節標題 14pt ＞ 小標 11pt ＞ 內文 10pt ＞ 表格 9.5pt（使用者指定標題比內容大一級） */
+  .snum,.shead h2{font-size:14pt;min-width:0}
+  .shead .tag{display:none}
+  .blk h3{font-size:11pt;margin:2pt 0 0;line-height:1.3}
+  .blk b,td b{font-weight:700}
+  .sum{margin:3pt 0 0;padding-left:13pt}
+  .sum li{margin:1pt 0;line-height:1.4;font-size:10pt}
+  .tbl-wrap,.wrap{overflow:visible}
+  table.data{margin:1pt 0 0;font-size:9.5pt}
+  table.data th,table.data td{padding:1.1pt 4pt;font-size:9.5pt;line-height:1.3}
+  table.data th:first-child,table.data td:first-child{padding-left:0}
+  td:first-child{font-size:9.5pt}
+  tbody tr:hover td{background:none}
+  .note{font-size:7pt;line-height:1.3;margin:1pt 0 0;padding:0 0 0 5pt;border-left:1pt solid #bbb}
+  /* 不用整頁 grid：Safari 對 grid 內分頁控制支援不全。小表併排改由各節內的 .pair 負責 */
+  .secs{display:block}
+  .pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:12pt;align-items:start}
+  .blk{break-inside:avoid;min-width:0}
+  /* 半欄表格：固定版面、表頭與數值可折行，任何字型下都不會寬過欄位；
+     右欄再留 6pt 安全邊，避免印表機實體邊界吃掉最右一欄（RP 變動曾被截，2026-09-14） */
+  .pair table.data{table-layout:fixed;width:100%}
+  /* 權重須高於 table.data th/td 的 nowrap（0,1,2），否則字放大時表頭互相重疊 */
+  .pair table.data th,.pair table.data td{white-space:normal;overflow-wrap:anywhere}
+  .pair table.data th:first-child,.pair table.data td:first-child{width:34%}
+  /* 央行決議句、事件名稱為長文字，紙本允許折行 */
+  #cbc td,#calendar td{white-space:normal}
+  #cbc td:first-child,#calendar td:first-child{white-space:nowrap}
+  #bond,#stock,#rates,#fx,#history,#econ,#cbc,#calendar{padding-right:6pt}
+  /* 使用者指定：「近期走勢」起換到第 2 頁（2026-09-14；台股併節後為第五節） */
+  /* 第 2 頁全為全寬表，改一般區塊：Safari 對 grid 內的分頁控制（break-inside）支援不全，會把表格列切半 */
+  .secs.secs-p2{display:block;break-before:page;page-break-before:always}
+  /* 頁碼（使用者指定右下角）：@page 邊界盒，Chrome／Edge 支援；使用者表示 Safari 不顯示無妨（2026-09-15） */
+  @page{@bottom-right{content:counter(page) " / " counter(pages);font-family:"Times New Roman",serif;font-size:8pt;color:#444}}
+  tr{break-inside:avoid;page-break-inside:avoid}
+  /* 使用者指定紙本不印這三節的註解（2026-09-14） */
+  .part-inst .note,#fx .note,#econ .note{display:none}
+  .pfoot{display:block;margin:6pt 0 0;padding-top:2pt;border-top:.6pt solid #999;font-size:7pt;color:#444}
+}
+/* 台灣債市行情 紙本：明細表縮小字級 */
+@media print{
+  .blk h3{font-size:10.5pt;margin:3pt 0 0}
+  .blk p.sub{font-size:8.5pt;margin:2pt 0 0}
+  table.data.bmk th,table.data.bmk td{font-size:8pt;padding:.8pt 3pt}
+  .kind,.rchip{font-size:7pt;padding:0 .3em;border-width:.5pt}
+  /* 殖利率曲線：紙本縮小，維持可讀 */
+  .curvebox{padding:1pt 0 0;margin:2pt 0 0}
+  .curvebox{width:104mm}
+  .curvebox svg.ycurve{width:100%}
+  /* 圖例與圖同寬，紙本才不會圖只佔半頁、說明卻橫跨整頁 */
+  .clegend{font-size:7pt;gap:.1rem .5rem;margin:1pt 0 0;max-width:104mm}
+  /* 紙本：債市行情的附註不印、明細表最多印 8 列（其餘在網頁）*/
+  #bond .note{display:none}
+  table.data.bmk tbody tr:nth-child(n+9){display:none}
+  table.data.bmk{margin-top:0}
+  .blk#bond h3{margin-top:2pt}
+  /* 紙本未來關鍵事件只印前 5 則（2026-09-21）*/
+  tr.prt-hide{display:none}
+  .prt-note{display:block}
+}
+
+.toolbar{align-items:center;background:#1e2c6d;padding:8px 14px;
+  -webkit-backdrop-filter:none;backdrop-filter:none}
+.toolbar .btn{color:#fff;background:transparent;border-color:rgba(255,255,255,.4)}
+.toolbar .btn:hover{color:#fff;border-color:#fff}
+.toolbar .btn:active{background:rgba(255,255,255,.14)}
+.toolbar .btn:focus-visible{outline-color:#fff}
+.brandbox{display:flex;flex-direction:column;align-items:flex-start;margin-right:auto;line-height:1}
+.brand{height:34px;width:auto;display:block}
+.brandnote{margin-top:3px;font-family:"Noto Sans TC","PingFang TC",sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.04em;color:#ffb3ac;white-space:nowrap}
+.pbrand{display:none}
+/* 螢幕版：報頭與工具列同為深藍、內容區白底（2026-10-08 使用者指定）；紙本不受影響 */
+@media screen{
+  :root{--paper:#fff;--paper-2:#fff;--band:#f2f4f7;--rule:#d5d9df;--rule-soft:#e6e9ed}
+  body{background:#fff;background-image:none}
+  .toolbar{margin-bottom:0}
+  .masthead{background:#1e2c6d;color:#fff;padding:26px 14px 18px;border-bottom:0;margin-bottom:8px}
+  .masthead .kicker{color:rgba(255,255,255,.62)}
+  .masthead .dateline,.masthead .dateline b{color:#fff}
+  .masthead .dateline{margin-bottom:0}
+}
+@media print{
+  .pbrand{display:flex !important;margin-left:auto;margin-right:8pt;flex-direction:column;align-items:flex-end;align-self:flex-end;gap:1pt}
+  .pbrand img{height:18pt;width:auto;display:block}
+  .pbrand span{font-size:7pt;font-weight:700;color:#8a1f1a;letter-spacing:.03em;white-space:nowrap}
+  @page{@bottom-left{content:"永豐金證券內部使用　請勿外流";font-family:"Noto Sans TC","PingFang TC",sans-serif;font-size:8pt;color:#8a1f1a}}
+}</style></head>
+<body data-report-date="2026-10-30">
+<main class="sheet">
+<!-- 工具列與美股版一致：置於 .sheet 內（對齊內容欄右緣）、順序與標示相同 -->
+<nav class="toolbar" aria-label="檔案工具">
+  <div class="brandbox"><img class="brand" src="data:image/png;base64,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" alt="永豐金證券 SinoPac Securities" width="130" height="34"><span class="brandnote">永豐金證券內部使用　請勿外流</span></div><a class="btn" id="lnk-archive" href="archive/">☰ 歷史查詢</a>
+  
+  <button class="btn" id="btn-print" type="button">⎙ 列印（A4 精簡版）</button>
+  
+</nav>
+<header class="masthead"><p class="kicker">Taiwan Financial Market Daily</p><h1>台灣金融市場日報</h1><p class="dateline"><b>2026/10/30</b></p><div class="pbrand"><img class="plogo" src="data:image/png;base64,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" alt="永豐金證券 SinoPac Securities" width="130" height="34"><span>永豐金證券內部使用　請勿外流</span></div></header><section class="shead"><span class="snum">·</span><h2>重點速覽</h2><span class="tag">At a glance</span></section><div class="glance">
+<div class="g"><div class="lab">10年期台債</div><div class="val">2.0300%</div><div class="chg"><span class="flat">無成交（沿用 10/28）</span></div></div>
+<div class="g"><div class="lab">加權指數</div><div class="val">45,211.83</div><div class="chg"><span class="down">-1,156.50</span>　<span class="down">-2.49%</span></div></div>
+<div class="g"><div class="lab">三大法人合計</div><div class="val"><span class="down">-1,398.44</span> 億</div><div class="chg">前日 -832.71</div></div>
+<div class="g"><div class="lab">新台幣／美元</div><div class="val">32.478</div><div class="chg"><span class="down">升 1.4 分</span></div></div>
+</div><ul class="sum"><li>台債指標公債：2 年期未成交，殖利率沿用 10/28 報價 1.5825%；5 年期未成交，殖利率沿用 10/29 報價 1.8460%；10 年期未成交，殖利率沿用 10/28 報價 2.0300%；20 年期未成交，殖利率沿用 09/30 報價 2.1159%；30 年期未成交，殖利率沿用 05/28 報價 1.8860%。</li><li>加權指數收 <b>45,211.83</b> 點，下跌 1,156.50 點（-2.49%），成交金額 9,338.51 億元，較前日增 1,100.38 億元；三大法人賣超 <b>1,398.44</b> 億元（外資 -1,124.67、投信 +239.93、自營商 -513.70），外資已連續 2 個交易日賣超；近 5 個交易日區間高 47,035.58（10/28）、低 45,211.83（10/30），最新距高 -1,823.75 點（-3.88%）、當日即期間低點。</li><li>美元兌新台幣收 <b>32.478</b> 元，升 1.4 分（前一外匯交易日 10/29 32.492），成交金額 24.44 億美元。</li></ul><div class="secs"><div class="blk" id="bond"><section class="shead"><span class="snum">一</span><h2>台灣債市行情</h2></section><h3>指標公債殖利率</h3><div class="tbl-wrap"><table class="data"><thead><tr><th>到期年限</th><th>指標券</th><th>殖利率(%)</th><th>漲跌(bp)</th><th>成交金額(億元)</th><th>最近成交日</th></tr></thead><tbody><tr class="stale"><td>2年期</td><td>A15204</td><td>1.5825</td><td><span class="flat">0.00</span></td><td>0.00</td><td>2026/10/28</td></tr><tr class="stale"><td>5年期</td><td>A15108</td><td>1.8460</td><td><span class="flat">0.00</span></td><td>0.00</td><td>2026/10/29</td></tr><tr class="stale"><td>10年期</td><td>A15109R</td><td>2.0300</td><td><span class="flat">0.00</span></td><td>0.00</td><td>2026/10/28</td></tr><tr class="stale"><td>20年期</td><td>A15107</td><td>2.1159</td><td><span class="flat">0.00</span></td><td>0.00</td><td>2026/09/30</td></tr><tr class="stale"><td>30年期</td><td>A15105</td><td>1.8860</td><td><span class="flat">0.00</span></td><td>0.00</td><td>2026/05/28</td></tr></tbody></table></div><h3>台債殖利率曲線</h3><div class="curvebox"><svg viewBox="0 0 720 250" role="img" aria-label="台債殖利率曲線" class="ycurve"><line x1="54" x2="702" y1="183.1" y2="183.1" stroke="var(--rule-soft)" stroke-width="1"/><text x="46" y="187.1" text-anchor="end" fill="var(--ink-3)" font-size="11">1.60</text><line x1="54" x2="702" y1="129.2" y2="129.2" stroke="var(--rule-soft)" stroke-width="1"/><text x="46" y="133.2" text-anchor="end" fill="var(--ink-3)" font-size="11">1.80</text><line x1="54" x2="702" y1="75.4" y2="75.4" stroke="var(--rule-soft)" stroke-width="1"/><text x="46" y="79.4" text-anchor="end" fill="var(--ink-3)" font-size="11">2.00</text><line x1="54" x2="702" y1="21.6" y2="21.6" stroke="var(--rule-soft)" stroke-width="1"/><text x="46" y="25.6" text-anchor="end" fill="var(--ink-3)" font-size="11">2.20</text><line x1="54" x2="702" y1="216" y2="216" stroke="var(--rule)" stroke-width="1"/><text x="81.5" y="233" text-anchor="middle" fill="var(--ink-3)" font-size="11">2Y</text><text x="200.7" y="233" text-anchor="middle" fill="var(--ink-3)" font-size="11">5Y</text><text x="335.0" y="233" text-anchor="middle" fill="var(--ink-3)" font-size="11">10Y</text><text x="525.0" y="233" text-anchor="middle" fill="var(--ink-3)" font-size="11">20Y</text><text x="670.8" y="233" text-anchor="middle" fill="var(--ink-3)" font-size="11">30Y</text><path d="M81.5 189.8 L200.7 107.7 L335.0 75.0 L525.0 44.2 L670.8 106.1" fill="none" stroke="var(--ink-3)" stroke-width="1.4" stroke-dasharray="5 3" opacity="0.85"/><path d="M81.5 168.3 L200.7 113.0 L335.0 96.8 L525.0 44.2 L670.8 106.1" fill="none" stroke="var(--ink-3)" stroke-width="1.4" stroke-dasharray="2 3" opacity="0.85"/><path d="M81.5 187.8 L200.7 116.9 L335.0 67.3 L525.0 44.2 L670.8 106.1" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round"/><circle cx="81.5" cy="187.8" r="4.2" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/><text x="87.5" y="205.8" text-anchor="start" fill="var(--ink)" font-size="11.5" font-weight="600" paint-order="stroke" stroke="var(--paper-2)" stroke-width="3.5" stroke-linejoin="round">1.5825</text><circle cx="200.7" cy="116.9" r="4.2" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/><text x="200.7" y="105.9" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-weight="600" paint-order="stroke" stroke="var(--paper-2)" stroke-width="3.5" stroke-linejoin="round">1.8460</text><circle cx="335.0" cy="67.3" r="4.2" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/><text x="335.0" y="56.3" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-weight="600" paint-order="stroke" stroke="var(--paper-2)" stroke-width="3.5" stroke-linejoin="round">2.0300</text><circle cx="525.0" cy="44.2" r="4.2" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/><text x="525.0" y="33.2" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-weight="600" paint-order="stroke" stroke="var(--paper-2)" stroke-width="3.5" stroke-linejoin="round">2.1159</text><circle cx="670.8" cy="106.1" r="4.2" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/><text x="664.8" y="124.1" text-anchor="end" fill="var(--ink)" font-size="11.5" font-weight="600" paint-order="stroke" stroke="var(--paper-2)" stroke-width="3.5" stroke-linejoin="round">1.8860</text></svg></div><p class="clegend"><span class="lg"><i class="l-now"></i>當日指標公債</span><span class="lg"><i class="l-cmp l-cmp1"></i>一週前（2026-10-22）</span><span class="lg"><i class="l-cmp l-cmp2"></i>一個月前（2026-09-30）</span><span class="lg"><i class="l-stale"></i>空心＝當日無成交，沿用最近成交日報價</span></p><h3>公債成交明細</h3><p class="note">當日無中央公債買賣斷成交（最近成交日 2026-10-29）。</p><h3>公司債／金融債成交明細</h3><div class="tbl-wrap"><table class="data bmk"><thead><tr><th>券號</th><th>簡稱</th><th>信評</th><th>票面利率(%)</th><th>剩餘年期</th><th>殖利率(%)</th><th>面額(億)</th><th>市場</th></tr></thead><tbody><tr><td>B99416</td><td class="lft">P14南山3A</td><td class="lft"><span class="rchip">twAA</span></td><td>3.7500</td><td>9.07</td><td>3.5664</td><td>2.40</td><td class="lft">營業處所</td></tr><tr><td>B81715</td><td class="lft">P15聯上發4A</td><td class="lft"><span class="rchip">twAAA</span></td><td>2.5500</td><td>4.99</td><td>2.5500</td><td>1.00</td><td class="lft">營業處所</td></tr></tbody></table></div><p class="note">合計 2 檔、面額 3.40 億元（新台幣計價，同券同日於兩市場成交者分列）。信評依公開資訊觀測站債券發行資料（債券評等→擔保機構評等→發行公司評等）。</p><h3>新發行資訊</h3><p class="sub">中央公債（財政部國庫署發行公告）</p><div class="tbl-wrap"><table class="data bmk"><thead><tr><th>期別</th><th>券號</th><th>年期</th><th>發行額(億元)</th><th>標售日</th><th>發行日</th><th>狀態</th></tr></thead><tbody><tr><td>115甲10</td><td>A15110</td><td>30Y</td><td>150</td><td>2026-11-04</td><td>2026-11-09</td><td>即將標售</td></tr></tbody></table></div><p class="note">只列發行日在資料日之後者：公債依國庫署季發行明細與逐期標售公告（每季公告、標售前三週確認）；公司債／金融債依櫃買中心發行資料，往後 30 日內。票面利率為固定利率者之年利率。</p></div><div class="blk" id="stock"><section class="shead"><span class="snum">二</span><h2>台股收盤行情</h2></section><h3>加權指數</h3><div class="tbl-wrap"><table class="data"><thead><tr><th>指數</th><th>收盤</th><th>漲跌點數</th><th>漲跌幅(%)</th><th>成交金額(億元)</th><th>前日</th><th>變動</th></tr></thead><tbody><tr><td>加權指數</td><td>45,211.83</td><td><span class="down">-1,156.50</span></td><td><span class="down">-2.49</span></td><td>9,338.51</td><td>8,238.13</td><td><span class="up">+1,100.38</span></td></tr></tbody></table></div><div class="pair"><div class="part part-inst"><h3>三大法人買賣超（億元）</h3><div class="tbl-wrap"><table class="data"><thead><tr><th>法人</th><th>當日(10/30)</th><th>前日(10/29)</th><th>變動</th></tr></thead><tbody><tr><td>外資</td><td><span class="down">-1,124.67</span></td><td><span class="down">-688.15</span></td><td><span class="down">-436.52</span></td></tr><tr><td>投信</td><td><span class="up">+239.93</span></td><td><span class="up">+70.44</span></td><td><span class="up">+169.49</span></td></tr><tr><td>自營商</td><td><span class="down">-513.70</span></td><td><span class="down">-215.00</span></td><td><span class="down">-298.70</span></td></tr><tr class="total"><td>合計</td><td><span class="down">-1,398.44</span></td><td><span class="down">-832.71</span></td><td><span class="down">-565.73</span></td></tr></tbody></table></div></div><div class="part part-margin"><h3>融資融券（上市）</h3><div class="tbl-wrap"><table class="data"><thead><tr><th>項目</th><th>餘額(10/29)</th><th>前日</th><th>增減</th></tr></thead><tbody><tr><td>融資餘額(億元)</td><td>6,339.11</td><td>6,323.00</td><td><span class="up">+16.11</span></td></tr><tr><td>融資餘額(張)</td><td>9,588,759</td><td>9,550,908</td><td><span class="up">+37,851</span></td></tr><tr><td>融券餘額(張)</td><td>189,002</td><td>193,040</td><td><span class="down">-4,038</span></td></tr><tr><td>券資比(%)</td><td>1.97</td><td>2.02</td><td><span class="down">-0.05</span> pp</td></tr></tbody></table></div><p class="note">證交所當日信用交易資料約於晚間公布，本表為 2026/10/29 資料；券資比＝融券餘額／融資餘額（張數）。</p><p class="note">歷史高點／低點（2001 年以來）：融資餘額 6,533.30 億元（2026/10/12）／900.71 億元（2020/03/26）；融券餘額 1,975,246 張（2003/10/14）／114,313 張（2025/04/10）；券資比 15.01%（2020/05/14）／0.74%（2008/04/10）。</p></div></div></div><div class="blk" id="rates"><section class="shead"><span class="snum">三</span><h2>短期利率</h2></section><div class="pair"><div class="part">
+<h3>金融業隔夜拆款利率</h3>
+<p class="note">央行尚未公布當日資料。</p>
+</div><div class="part">
+<h3>2-10 天期附買回（RP）利率</h3>
+<div class="tbl-wrap"><table class="data"><thead><tr><th>項目</th><th>當日(10/30)</th><th>前日(10/29)</th><th>變動</th></tr></thead><tbody><tr><td>加權平均利率(%)</td><td>1.3205</td><td>1.3881</td><td><span class="down">-6.76</span>bp</td></tr><tr><td>成交金額（億元）</td><td>243.69</td><td>237.20</td><td><span class="up">+6.50</span></td></tr></tbody></table></div>
+</div></div></div><div class="blk" id="fx"><section class="shead"><span class="snum">四</span><h2>美元兌新台幣銀行間收盤匯率</h2></section><div class="tbl-wrap"><table class="data lftall"><thead><tr><th>項目</th><th>當日</th><th>前一外匯交易日</th><th>變動</th></tr></thead><tbody><tr><td>收盤匯率</td><td>32.478</td><td>32.492（10/29）</td><td><span class="down">-0.014</span>　<b class="down">升 1.4 分</b></td></tr><tr><td>開盤</td><td colspan="3" class="lft">32.520</td></tr><tr><td>盤中最高／最低</td><td colspan="3" class="lft">32.676／32.478</td></tr><tr><td>成交金額（億美元）</td><td colspan="3" class="lft">24.44</td></tr></tbody></table></div><p class="note">註：盤中最高／最低以匯價計（數字大＝新台幣弱）。</p></div><div class="blk" id="history"><section class="shead"><span class="snum">五</span><h2>近期走勢</h2></section><div class="tbl-wrap"><table class="data"><thead><tr><th>日期</th><th>匯率</th><th>10年期台債(%)</th><th>台股收盤</th><th>漲跌幅(%)</th><th>成交量(億)</th><th>外資</th><th>投信</th><th>自營商</th><th>法人合計</th></tr></thead><tbody><tr><td>10/22</td><td>32.508</td><td><span class="stale">2.0015*</span></td><td>46,041.43</td><td><span class="down">-1.81</span></td><td>9,334.37</td><td><span class="down">-815.82</span></td><td><span class="up">+94.92</span></td><td><span class="down">-273.77</span></td><td><span class="down">-994.67</span></td></tr><tr><td>10/27</td><td>32.452</td><td><span class="stale">2.0015*</span></td><td>46,096.23</td><td><span class="up">+0.12</span></td><td>10,316.84</td><td><span class="down">-80.39</span></td><td><span class="up">+236.05</span></td><td><span class="down">-123.99</span></td><td><span class="up">+31.67</span></td></tr><tr><td>10/28</td><td>32.418</td><td>2.0300</td><td>47,035.58</td><td><span class="up">+2.04</span></td><td>7,503.41</td><td><span class="up">+159.57</span></td><td><span class="up">+143.20</span></td><td><span class="up">+21.65</span></td><td><span class="up">+324.42</span></td></tr><tr><td>10/29</td><td>32.492</td><td><span class="stale">2.0300*</span></td><td>46,368.33</td><td><span class="down">-1.42</span></td><td>8,238.13</td><td><span class="down">-688.15</span></td><td><span class="up">+70.44</span></td><td><span class="down">-215.00</span></td><td><span class="down">-832.71</span></td></tr><tr><td>10/30</td><td>32.478</td><td><span class="stale">2.0300*</span></td><td>45,211.83</td><td><span class="down">-2.49</span></td><td>9,338.51</td><td><span class="down">-1,124.67</span></td><td><span class="up">+239.93</span></td><td><span class="down">-513.70</span></td><td><span class="down">-1,398.44</span></td></tr></tbody></table></div><p class="note">10 年期台債標 * 者當日無成交，殖利率沿用最近成交日報價，非當日市場價格。</p><p class="note">5 日累計法人買賣超（億元）：外資 -2,549.47；投信 +784.54；自營商 -1,104.81；合計 -2,869.74。</p></div><div class="blk" id="econ"><section class="shead"><span class="snum">六</span><h2>台灣重要經濟數據</h2></section><div class="tbl-wrap"><table class="data"><thead><tr><th>指標</th><th>資料期</th><th>數值</th><th>前期</th><th>變動</th></tr></thead><tbody><tr><td>CPI 年增率</td><td>2026/09</td><td><b>2.73</b> %</td><td>2.05</td><td><span class="up">+0.68</span> <small>pp</small></td></tr><tr><td>核心 CPI 年增率</td><td>2026/09</td><td><b>2.52</b> %</td><td>2.31</td><td><span class="up">+0.21</span> <small>pp</small></td></tr><tr><td>海關出口金額</td><td>2026/09</td><td><b>872.2</b> 億美元</td><td>823.8</td><td><span class="up">+48.4</span> <small>(+5.9%)</small></td></tr><tr><td>海關進口金額</td><td>2026/09</td><td><b>635.9</b> 億美元</td><td>599.8</td><td><span class="up">+36.2</span> <small>(+6.0%)</small></td></tr><tr><td>外銷訂單</td><td>2026/09</td><td><b>1,142.1</b> 億美元</td><td>1,029.6</td><td><span class="up">+112.5</span> <small>(+10.9%)</small></td></tr><tr><td>失業率</td><td>2026/09</td><td><b>3.36</b> %</td><td>3.41</td><td><span class="down">-0.05</span> <small>pp</small></td></tr><tr><td>經濟成長率（yoy）</td><td>2026 Q3</td><td><b>14.36</b> %</td><td>12.93</td><td><span class="up">+1.43</span> <small>pp</small></td></tr></tbody></table></div><p class="note">註：pp＝百分點。資料來源：行政院主計總處統計資料庫（前期值）與「重要經社指標」（最新一期）；海關進出口貿易量值原始編製機關為財政部、外銷訂單為經濟部。</p></div><div class="blk" id="cbc"><section class="shead"><span class="snum">七</span><h2>央行動態</h2></section><div class="tbl-wrap"><table class="data"><tbody><tr><td>重貼現率</td><td class="lft"><b>2.000%</b>（2024-03-22 起實施）</td></tr><tr><td>最後利率調整</td><td class="lft"><span class="up">升息 12.5 bp</span>，由 1.875% 調整為 2.000%</td></tr><tr><td>上次理監事會議日期</td><td class="lft">2026-09-17</td></tr><tr><td>下次理監事會議</td><td class="lft"><b>2026-12-17</b>　48 天後</td></tr></tbody></table></div><p class="note">⚠️ 已公布的最後一次會議在 48 天後，明年度會議日期尚未納入。</p><p class="note">資料來源：中央銀行「央行貼放利率」與「理監事聯席會議預定日期」。</p></div><div class="blk" id="calendar"><section class="shead"><span class="snum">八</span><h2>未來關鍵事件（7 日內）</h2></section><div class="tbl-wrap"><table class="data lftall"><thead><tr><th>日期</th><th>時間</th><th>發布單位</th><th>項目</th><th>資料期</th></tr></thead><tbody><tr><td>11-05</td><td>16:20</td><td>中央銀行</td><td>外匯存底統計</td><td>(11607)</td></tr><tr><td>11-06</td><td>16:00</td><td>行政院主計總處</td><td>消費者物價指數</td><td>(11607)</td></tr><tr><td>11-06</td><td>16:00</td><td>行政院主計總處</td><td>進、出口物價指數</td><td>(11607)</td></tr><tr><td>11-06</td><td>16:00</td><td>行政院主計總處</td><td>營造工程物價指數</td><td>(11607)</td></tr><tr><td>11-06</td><td>16:00</td><td>行政院主計總處</td><td>生產者物價指數</td><td>(11607)</td></tr><tr class="prt-hide"><td>11-06</td><td>16:00</td><td>行政院主計總處</td><td>服務業生產者物價指數</td><td>(11606)</td></tr></tbody></table></div><p class="note prt-note">紙本僅列前 5 則，完整清單見網頁。</p><p class="note">資料來源：行政院主計總處「預告統計資料發布時間表」。</p></div></div><section class="about"><h2>關於本頁</h2><dl><dt>資料來源</dt><dd>臺灣證券交易所、證券櫃檯買賣中心、中央銀行、行政院主計總處（含統計資料庫）、財政部、經濟部、中央通訊社。各節下方另註明個別來源與資料期。</dd></dl></section><p class="pfoot">資料來源：臺灣證券交易所、證券櫃檯買賣中心、中央銀行、行政院主計總處、財政部、經濟部、中央通訊社。</p>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</main>
+<script>(function(){
+  var DATE = document.body.dataset.reportDate || '';
+
+  /* 同一份 HTML 會同時放在站台根目錄與 archive/ 底下，存檔頁連結須依所在位置調整 */
+  var arch = document.getElementById('lnk-archive');
+  if (arch && /\/archive\//.test(location.pathname)) {
+    arch.setAttribute('href', './');
+  }
+  /* 逐一安全綁定：任一按鈕不存在時只略過該顆，不可讓整段腳本中止。
+     （曾因沿用美股版的 btn-pdf，而台股頁面是 btn-print，
+       null.addEventListener 拋錯導致列印與深淺色兩顆按鈕同時失效） */
+  function on(id, fn){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', fn);
+    else if (window.console) console.warn('toolbar: 找不到 #' + id);
+  }
+
+  var toastEl = document.getElementById('toast'), toastTimer;
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('on'); }, 2600);
+  }
+
+  /* 產生一份「乾淨」的存檔副本：移除工具列、提示與本段腳本 */
+  function buildSnapshot(){
+    var clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.toolbar, .toast, script').forEach(function(n){ n.remove(); });
+    var theme = document.documentElement.getAttribute('data-theme');
+    if (theme) clone.setAttribute('data-theme', theme);
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+
+  on('btn-save', function(){
+    var name = '台灣金融市場日報_' + (DATE || 'report') + '.html';
+    try {
+      var blob = new Blob(['﻿' + buildSnapshot()], {type:'text/html;charset=utf-8'});
+      var url  = URL.createObjectURL(blob);
+      var a    = document.createElement('a');
+      a.href = url; a.download = name; a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      toast('已另存　' + name);
+    } catch (e) {
+      toast('此環境不允許下載，請用瀏覽器「檔案 › 儲存頁面」');
+    }
+  });
+
+  on('btn-print', function(){
+    window.print();
+  });
+
+  /* 深／淺色：僅存在本機瀏覽器，讀取失敗不影響頁面 */
+  var KEY = 'twmkt-theme';   // 與美股站同網域，key 須分開
+  /* 頁面若以 data-lock-theme 鎖定主題，就不套用使用者存下的偏好 */
+  if (!document.documentElement.hasAttribute('data-lock-theme')) {
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  }
+
+  on('btn-theme', function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    if (!cur) {
+      cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body></html>
